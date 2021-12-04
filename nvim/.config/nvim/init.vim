@@ -57,6 +57,7 @@ source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/gruvbox.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/fzf.vim
+source ~/.config/nvim/plugins/commentary.vim
 
 call plug#end()
 
