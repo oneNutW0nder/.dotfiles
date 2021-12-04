@@ -1,4 +1,5 @@
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 let g:coc_global_extensions = [
     \ 'coc-clangd',
@@ -6,7 +7,7 @@ let g:coc_global_extensions = [
     \ 'coc-git',
     \ 'coc-pairs',
     \ 'coc-json',
-    \ 'coc-vimlsp'
+    \ 'coc-vimlsp',
 \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -32,6 +33,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>

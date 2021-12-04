@@ -56,6 +56,7 @@ source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/gruvbox.vim
 source ~/.config/nvim/plugins/coc.vim
+source ~/.config/nvim/plugins/fzf.vim
 
 call plug#end()
 
