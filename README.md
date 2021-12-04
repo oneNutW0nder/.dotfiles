@@ -18,3 +18,8 @@ git clone $HOME/<this_repo>
 cd .dotfiles    # This repo
 stow nvim       # Will create symlinks for nvim configuration 
 ```
+
+## NVim Stuff
+
+After install `neovim` and using `stow` properly, open `neovim` and execute 
+`:PlugInstall` to install all plugins. Close all buffers, and have fun!
