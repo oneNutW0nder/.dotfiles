@@ -1,0 +1,22 @@
+{
+    "python.pythonPath": "/usr/local/bin/python3",
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/usr/local/bin/black",
+    "python.linting.pylintEnabled": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "python",
+        "json",
+        "c++",
+        "c",
+        "markdown"
+    ],
+    "clangd.path": "/usr/local/opt/llvm/bin/clangd",
+    "clangd.fallbackFlags": [
+        "-std=c++20",
+        "-isystem/usr/local/opt/llvm/bin/../include/c++/v1",
+        "-isystem/usr/local/Cellar/llvm/13.0.0_1/lib/clang/13.0.0/include",
+        "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/usr/include",
+        "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/System/Library/Frameworks",
+        "-I/usr/local/include"
+    ]
+}

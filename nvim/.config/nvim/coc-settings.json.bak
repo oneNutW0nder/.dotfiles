@@ -1,0 +1,44 @@
+{
+    "python.pythonPath": "/usr/local/bin/python3",
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/usr/local/bin/black",
+    "python.linting.pylintEnabled": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "python",
+        "json",
+        "c++",
+        "c",
+        "markdown"
+    ],
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                },
+                "clang": {
+                    "resourceDir": "/usr/local/Cellar/llvm/13.0.0_1/lib/clang/13.0.0",
+                    "extraArgs": [
+                        "-isystem",
+                        "/Library/Developer/CommandLineTools/usr/include/c++/v1",
+                        "-I",
+                        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/"
+                    ]
+                }
+            }
+        }
+    }
