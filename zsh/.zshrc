@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # YEET ANTIGEN
 source /usr/local/share/antigen/antigen.zsh
 
@@ -8,7 +15,8 @@ antigen use oh-my-zsh
 antigen bundle git
 
 # Set the theme
-antigen theme af-magic
+# antigen theme af-magic
+antigen theme romkatv/powerlevel10k
 
 antigen apply
 
@@ -31,10 +39,10 @@ export LC_ALL=en_US.UTF-8
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
