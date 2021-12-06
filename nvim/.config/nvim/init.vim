@@ -17,6 +17,7 @@ set colorcolumn=80
 set signcolumn=yes
 set confirm
 set spell
+set mouse=a
 set nobackup
 set nowritebackup
 set cmdheight=2 " Used to make messages display better
@@ -29,8 +30,8 @@ set redrawtime=10000
 
 let mapleader = "\<space>"
 
-map <leader>src :source %<cr>
-map <leader>k   :nohlsearch<cr>
+map <leader>vr :source %<cr>
+map <leader>h   :nohlsearch<cr>
 map <leader>ve  :edit $MYVIMRC<cr>
 
 " Better window operations
@@ -70,6 +71,8 @@ source ~/.config/nvim/plugins/gruvbox.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/fzf.vim
 source ~/.config/nvim/plugins/commentary.vim
+source ~/.config/nvim/plugins/repeat.vim
+" source ~/.config/nvim/plugins/smooth-scroll.vim
 
 call plug#end()
 

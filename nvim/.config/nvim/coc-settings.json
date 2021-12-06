@@ -2,13 +2,17 @@
     "python.pythonPath": "/usr/bin/env python3",
     "python.formatting.provider": "black",
     "python.formatting.blackPath": "/usr/local/bin/black",
-    "python.linting.pylintEnabled": false,
+    "python.linting.pylintPath": "~/.local/bin/pylint",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.lintOnSave": true,
+    "pyright.disableDiagnostics": true, // Needs to be disabled for pyLint
     "coc.preferences.formatOnSaveFiletypes": [
-        "python",
-        "json",
-        "c++",
-        "c",
-        "markdown"
+        //        "python",
+        "json"
+        //        "c++",
+        //        "c",
+        //       "markdown"
     ],
     "clangd.fallbackFlags": [
         "-std=c++2a"
