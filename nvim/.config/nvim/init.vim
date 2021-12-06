@@ -33,6 +33,18 @@ map <leader>src :source %<cr>
 map <leader>k   :nohlsearch<cr>
 map <leader>ve  :edit $MYVIMRC<cr>
 
+" Better window operations
+nmap <C-l> <C-w>l
+nmap <C-h> <C-w>h
+nmap <C-k> <C-w>k
+nmap <C-j> <C-w>j
+
+" Reselect visual selection after indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" Fix Y to make it behave (:h y)
+map Y y$
 
 " Allow gf to open non-existent files
 map gf :edit <cfile><cr>
