@@ -8,6 +8,7 @@ let g:coc_global_extensions = [
     \ 'coc-pairs',
     \ 'coc-json',
     \ 'coc-vimlsp',
+    \ 'coc-markdownlint'
 \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.

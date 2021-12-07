@@ -5,7 +5,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set number
 set hidden 
 set title
 set cursorline
@@ -23,7 +22,8 @@ set nowritebackup
 set cmdheight=2 " Used to make messages display better
 set updatetime=300
 set redrawtime=10000
-"set relativenumber
+set relativenumber
+" set number
 
 " *** Key Binds *** 
 
