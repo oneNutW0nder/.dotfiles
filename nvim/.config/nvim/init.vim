@@ -21,7 +21,6 @@ set mouse=a
 set nobackup
 set nowritebackup
 set cmdheight=2 " Used to make messages display better
-set signcolumn=yes
 set updatetime=300
 set redrawtime=10000
 "set relativenumber
