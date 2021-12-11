@@ -38,7 +38,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/navigation.vim
-source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/gruvbox.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/fzf.vim
