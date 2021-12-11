@@ -39,12 +39,26 @@ call plug#begin('~/.config/nvim/plugged')
 source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/navigation.vim
 source ~/.config/nvim/plugins/gruvbox.vim
-source ~/.config/nvim/plugins/coc.vim
-source ~/.config/nvim/plugins/fzf.vim
 source ~/.config/nvim/plugins/commentary.vim
 source ~/.config/nvim/plugins/repeat.vim
+source ~/.config/nvim/plugins/lsp.lua
+" source ~/.config/nvim/plugins/coc.vim
+" source ~/.config/nvim/plugins/fzf.vim
+
+" *** Experiment with nvim-lsp builtin stuff ***
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 call plug#end()
+
+" settings for lsp
+set completeopt=menu,menuone,noselect
 
 " Colorscheme down here since it needs to be after the sourcing
 colorscheme gruvbox
