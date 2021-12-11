@@ -23,35 +23,7 @@ set cmdheight=2 " Used to make messages display better
 set updatetime=300
 set redrawtime=10000
 set relativenumber
-" set number
-
-" *** Key Binds *** 
-
-let mapleader = "\<space>"
-
-map <leader>vr :source %<cr>
-map <leader>h   :nohlsearch<cr>
-map <leader>ve  :edit $MYVIMRC<cr>
-
-" Better window operations
-nmap <C-l> <C-w>l
-nmap <C-h> <C-w>h
-nmap <C-k> <C-w>k
-nmap <C-j> <C-w>j
-
-" Reselect visual selection after indenting
-vnoremap < <gv
-vnoremap > >gv
-
-" Fix Y to make it behave (:h y)
-map Y y$
-
-" Allow gf to open non-existent files
-map gf :edit <cfile><cr>
-
-" Fast addition of ; and , at end of a line
-imap ;; <Esc>A;<Esc>
-imap ,, <Esc>A,<Esc>
+set number
 
 " *** Plugins ***
 
@@ -65,6 +37,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 source ~/.config/nvim/plugins/airline.vim
+source ~/.config/nvim/plugins/navigation.vim
 source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/gruvbox.vim
 source ~/.config/nvim/plugins/coc.vim
