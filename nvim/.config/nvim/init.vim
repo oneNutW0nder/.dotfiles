@@ -43,7 +43,6 @@ source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/fzf.vim
 source ~/.config/nvim/plugins/commentary.vim
 source ~/.config/nvim/plugins/repeat.vim
-" source ~/.config/nvim/plugins/smooth-scroll.vim
 
 call plug#end()
 
