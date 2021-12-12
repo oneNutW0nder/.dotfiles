@@ -9,11 +9,11 @@ map <leader>vr :source %<cr>
 map <leader>h   :nohlsearch<cr>
 map <leader>ve  :edit $MYVIMRC<cr>
 
-" Better window operations
-nmap <C-l> <C-w>l
-nmap <C-h> <C-w>h
-nmap <C-k> <C-w>k
-nmap <C-j> <C-w>j
+" Better window switching
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
 
 " Reselect visual selection after indenting
 vnoremap < <gv

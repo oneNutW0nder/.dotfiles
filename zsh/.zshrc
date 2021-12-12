@@ -33,6 +33,7 @@ alias ve="vim $HOME/.config/nvim/init.vim"
 alias vez="vim $HOME/.zshrc"
 alias vek="vim $HOME/.config/kitty/kitty.conf"
 alias vec="vim $HOME/.config/nvim/coc-settings.json"
+alias vel="vim $HOME/.config/nvim/lua/onenutw0nder/lsp.lua"
 alias gdb="gdb -q"
 
 # User Vars

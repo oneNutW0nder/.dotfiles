@@ -10,7 +10,7 @@ set title
 set cursorline
 set termguicolors
 set nowrap
-set scrolloff=8
+set scrolloff=12
 set sidescrolloff=8
 set colorcolumn=80
 set signcolumn=yes
@@ -41,25 +41,23 @@ source ~/.config/nvim/plugins/navigation.vim
 source ~/.config/nvim/plugins/gruvbox.vim
 source ~/.config/nvim/plugins/commentary.vim
 source ~/.config/nvim/plugins/repeat.vim
-source ~/.config/nvim/plugins/lsp.lua
 " source ~/.config/nvim/plugins/coc.vim
 " source ~/.config/nvim/plugins/fzf.vim
 
 " *** Experiment with nvim-lsp builtin stuff ***
-Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig'    " common configurations (from help)
+Plug 'hrsh7th/nvim-cmp' 
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-nvim-lsp'
 
 call plug#end()
 
 " settings for lsp
 set completeopt=menu,menuone,noselect
+lua require('onenutw0nder')
 
 " Colorscheme down here since it needs to be after the sourcing
 colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
 
