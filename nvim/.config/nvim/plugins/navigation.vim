@@ -5,7 +5,7 @@
 
 let mapleader = "\<space>"
 
-map <leader>vr :source %<cr>
+map <leader>vr :source $MYVIMRC<cr>
 map <leader>h   :nohlsearch<cr>
 map <leader>ve  :edit $MYVIMRC<cr>
 

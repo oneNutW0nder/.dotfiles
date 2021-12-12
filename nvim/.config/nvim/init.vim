@@ -41,6 +41,7 @@ source ~/.config/nvim/plugins/navigation.vim
 source ~/.config/nvim/plugins/gruvbox.vim
 source ~/.config/nvim/plugins/commentary.vim
 source ~/.config/nvim/plugins/repeat.vim
+source ~/.config/nvim/plugins/lsp.vim
 " source ~/.config/nvim/plugins/coc.vim
 " source ~/.config/nvim/plugins/fzf.vim
 
@@ -48,16 +49,17 @@ source ~/.config/nvim/plugins/repeat.vim
 Plug 'neovim/nvim-lspconfig'    " common configurations (from help)
 Plug 'hrsh7th/nvim-cmp' 
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
 Plug 'L3MON4D3/LuaSnip'
-Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 call plug#end()
 
 " settings for lsp
-set completeopt=menu,menuone,noselect
 lua require('onenutw0nder')
 
 " Colorscheme down here since it needs to be after the sourcing
 colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'hard'
 
