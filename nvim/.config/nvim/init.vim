@@ -25,6 +25,8 @@ set redrawtime=10000
 set relativenumber
 set number
 
+let $BAT_THEME="gruvbox-dark"
+
 " *** Plugins ***
 
 " auto-install vim-plug
@@ -44,22 +46,63 @@ source ~/.config/nvim/plugins/repeat.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/fzf.vim
 
+
+" =======================
+" Begin Builtin LSP Setup
+" =======================
+"
 " *** Experiment with nvim-lsp builtin stuff ***
-" --- Not all that impressed... pain in the ass to get going
-" source ~/.config/nvim/plugins/lsp.vim
-" Plug 'neovim/nvim-lspconfig'    " common configurations (from help)
-" Plug 'hrsh7th/nvim-cmp' 
+" LSP plugins
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'hrsh7th/nvim-cmp'
 " Plug 'hrsh7th/cmp-nvim-lsp'
 " Plug 'hrsh7th/cmp-buffer'
 " Plug 'hrsh7th/cmp-path'
 " Plug 'hrsh7th/cmp-cmdline'
+" Plug 'onsails/lspkind-nvim'
+
+" " Snippets
 " Plug 'L3MON4D3/LuaSnip'
 " Plug 'saadparwaiz1/cmp_luasnip'
 
+" " Color scheme
+" Plug 'gruvbox-community/gruvbox'
+
+" " tpope
+" Plug 'tpope/vim-commentary'
+" " Plug 'tpope/vim-fugitive'
+
+" " Pairs
+" Plug 'windwp/nvim-autopairs'
+
+" " Git integration
+" Plug 'airblade/vim-gitgutter'
+"
+"
+" =======================
+" End Builtin LSP Setup
+" =======================
+"
+
 call plug#end()
 
-" settings for lsp
-" lua require('onenutw0nder')
+"
+" =======================
+" Begin Builtin LSP Setup
+" =======================
+"
+" source $HOME/.config/nvim/conf/general.vim
+"
+" Setup auto-pairs
+" lua require('nvim-autopairs').setup{}
+
+" $HOME/.config/nvim/lua/builtin-lsp.lua
+" lua require('lsp')
+"
+" =======================
+" End Builtin LSP Setup
+" =======================
+" 
 
 " Colorscheme down here since it needs to be after the sourcing
 colorscheme gruvbox
