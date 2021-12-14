@@ -52,7 +52,7 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'tpope/vim-commentary'
-" Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 "
 " =======================
 " End Coc Setup
@@ -113,30 +113,6 @@ source ~/.config/nvim/plugins/fzf.vim
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
-" Status Line: https://shapeshed.com/vim-statuslines/
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m\
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\ 
 
 "
 " =======================

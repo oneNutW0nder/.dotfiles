@@ -7,6 +7,7 @@
     "python.linting.pylintEnabled": true,
     "python.linting.lintOnSave": false,
     "pyright.disableDiagnostics": true, // Needs to be disabled for pyLint
+    "python.analysis.diagnosticMode": "workspace",
     "coc.preferences.formatOnSaveFiletypes": [
         //        "python",
         "json"
