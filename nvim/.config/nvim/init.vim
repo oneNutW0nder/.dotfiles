@@ -24,10 +24,10 @@ set updatetime=300
 set redrawtime=10000
 set relativenumber
 set number
+set noshowmode
 
 let $BAT_THEME="gruvbox-dark"
 
-" *** Plugins ***
 
 " auto-install vim-plug
 let data_dir = '~/.config/nvim'
@@ -36,15 +36,28 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.config/nvim/plugged')
 
-source ~/.config/nvim/plugins/airline.vim
-source ~/.config/nvim/plugins/navigation.vim
-source ~/.config/nvim/plugins/gruvbox.vim
-source ~/.config/nvim/plugins/commentary.vim
-source ~/.config/nvim/plugins/repeat.vim
-source ~/.config/nvim/plugins/coc.vim
-source ~/.config/nvim/plugins/fzf.vim
+" *** Plugins ***
+call plug#begin('~/.config/nvim/plugged')
+"
+" =======================
+" Begin Coc Setup
+" =======================
+"
+
+Plug 'tpope/vim-repeat'
+Plug 'neoclide/coc.nvim',
+Plug 'antoinemadec/coc-fzf',
+Plug 'vim-airline/vim-airline'
+Plug 'gruvbox-community/gruvbox'
+Plug 'junegunn/fzf',
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+"
+" =======================
+" End Coc Setup
+" =======================
+"
 
 
 " =======================
@@ -88,6 +101,26 @@ call plug#end()
 
 "
 " =======================
+" Begin Coc Setup
+" =======================
+"
+
+source ~/.config/nvim/plugins/navigation.vim
+source ~/.config/nvim/plugins/coc.vim
+source ~/.config/nvim/plugins/fzf.vim
+
+" Colorscheme down here since it needs to be after the sourcing
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
+
+"
+" =======================
+" End Coc Setup
+" =======================
+"
+
+"
+" =======================
 " Begin Builtin LSP Setup
 " =======================
 "
@@ -103,7 +136,4 @@ call plug#end()
 " End Builtin LSP Setup
 " =======================
 " 
-
-" Colorscheme down here since it needs to be after the sourcing
-colorscheme gruvbox
 

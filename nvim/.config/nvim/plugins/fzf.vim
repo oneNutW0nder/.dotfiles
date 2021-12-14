@@ -1,6 +1,3 @@
-Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
-Plug 'junegunn/fzf.vim' " needed for previews
-
 " Enable window preview
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 

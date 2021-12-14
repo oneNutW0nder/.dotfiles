@@ -28,3 +28,6 @@ map gf :edit <cfile><cr>
 " Fast addition of ; and , at end of a line
 imap ;; <Esc>A;<Esc>
 imap ,, <Esc>A,<Esc>
+
+" Comments
+nmap <leader>gc <Plug>CommentaryLine
