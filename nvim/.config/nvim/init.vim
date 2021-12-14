@@ -46,13 +46,13 @@ call plug#begin('~/.config/nvim/plugged')
 "
 
 Plug 'tpope/vim-repeat'
-Plug 'neoclide/coc.nvim',
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'antoinemadec/coc-fzf',
-Plug 'vim-airline/vim-airline'
-Plug 'gruvbox-community/gruvbox'
-Plug 'junegunn/fzf',
+Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim'
+Plug 'gruvbox-community/gruvbox'
 Plug 'tpope/vim-commentary'
+" Plug 'vim-airline/vim-airline'
 "
 " =======================
 " End Coc Setup
