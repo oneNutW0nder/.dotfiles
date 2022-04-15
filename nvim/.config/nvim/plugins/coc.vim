@@ -5,8 +5,13 @@ let g:coc_global_extensions = [
     \ 'coc-pairs',
     \ 'coc-json',
     \ 'coc-vimlsp',
-    \ 'coc-markdownlint'
+    \ 'coc-phpls',
+    \ 'coc-tsserver',
+    \ 'coc-go',
+    \ 'coc-phpactor',
+    \ 'coc-rust-analyzer'
 \ ]
+    " \ 'coc-markdownlint',
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -80,4 +85,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " Enable repeating stuff
 " silent! call repeat#set("\<Plug>Coc", v:count)
 " silent! call repeat#set("\<Plug>Coc", v:count)
+
+" Auto add imports golang
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 

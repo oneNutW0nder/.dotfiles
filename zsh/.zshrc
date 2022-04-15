@@ -43,8 +43,18 @@ export LC_ALL=en_US.UTF-8
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/go/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Functions
+
+path_order() {
+    echo $path | sed 's/ /\n/g'
+}
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k/.p10k.zsh.
+[[ ! -f ~/.dotfiles/p10k/.p10k.zsh ]] || source ~/.dotfiles/p10k/.p10k.zsh

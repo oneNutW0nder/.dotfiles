@@ -12,7 +12,7 @@ set termguicolors
 set nowrap
 set scrolloff=12
 set sidescrolloff=8
-set colorcolumn=80
+set colorcolumn=88
 set signcolumn=yes
 set confirm
 set spell
@@ -53,6 +53,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "
 " =======================
 " End Coc Setup
@@ -108,6 +109,8 @@ call plug#end()
 source ~/.config/nvim/plugins/navigation.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/fzf.vim
+
+" let g:go_def_mapping_enabled = 0
 
 " Colorscheme down here since it needs to be after the sourcing
 let g:gruvbox_contrast_dark = 'hard'

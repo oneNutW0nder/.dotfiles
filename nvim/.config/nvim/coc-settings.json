@@ -1,24 +1,32 @@
 {
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": false,
     "python.pythonPath": "/usr/bin/env python3",
-    "python.formatting.provider": "black",
     "python.formatting.blackPath": "/usr/local/bin/black",
     "python.linting.pylintPath": "~/.local/bin/pylint",
+    "python.formatting.provider": "black",
     "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.lintOnSave": false,
-    "pyright.disableDiagnostics": true, // Needs to be disabled for pyLint
+    "python.linting.pylintEnabled": false,
+    "python.linting.lintOnSave": true,
+    "pyright.disableDiagnostics": true,
     "python.analysis.diagnosticMode": "workspace",
+    "python.linting.pylintArgs": [
+        "--jobs=4"
+    ],
+    "markdownlint.config": {
+        "default": true,
+        "line_length": false
+    },
     "coc.preferences.formatOnSaveFiletypes": [
-        //        "python",
-        "json"
-        //        "c++",
-        //        "c",
-        //       "markdown"
+        "json",
+        "markdown"
     ],
     "clangd.fallbackFlags": [],
+    "clangd.path": "/usr/bin/clangd",
     "clangd.arguments": [
         "-j=16",
         "--background-index",
         "--clang-tidy"
-    ]
+    ],
+    "git.enableGutters": true
 }
