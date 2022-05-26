@@ -9,7 +9,8 @@ let g:coc_global_extensions = [
     \ 'coc-tsserver',
     \ 'coc-go',
     \ 'coc-phpactor',
-    \ 'coc-rust-analyzer'
+    \ 'coc-rust-analyzer',
+    \ 'coc-toml'
 \ ]
     " \ 'coc-markdownlint',
 

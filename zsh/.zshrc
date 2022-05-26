@@ -35,6 +35,7 @@ alias vek="vim $HOME/.config/kitty/kitty.conf"
 alias vec="vim $HOME/.config/nvim/coc-settings.json"
 alias vel="vim $HOME/.config/nvim/lua/onenutw0nder/lsp.lua"
 alias gdb="gdb -q"
+alias work="cd $HOME/dev/metactf/content/"
 
 # User Vars
 export LC_ALL=en_US.UTF-8
@@ -44,6 +45,7 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/go/bin"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 
