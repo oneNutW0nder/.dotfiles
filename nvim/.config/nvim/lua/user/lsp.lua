@@ -68,10 +68,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = 0})
   vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer = 0})
   vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {buffer = 0})
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
-  vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
-  vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
+  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {buffer = 0})
+  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, {buffer = 0})
+  vim.keymap.set("n", "<space>dj", vim.diagnostic.goto_next, {buffer = 0})
+  vim.keymap.set("n", "<space>dk", vim.diagnostic.goto_prev, {buffer = 0})
 
 	-- Set autocommands conditional on server_capabilities
   if client.server_capabilities.document_formatting then
