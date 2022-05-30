@@ -2,6 +2,11 @@
 -- LSP Config
 --
 
+-- Menu stuff
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.shortmess:append "c"
+
+
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 cmp.setup({
@@ -28,9 +33,8 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' }, -- For luasnip users.
-  }, {
     { name = "path" },
-    { name = 'buffer' },
+    { name = 'buffer', keyword_length = 5 },
   })
 })
 
