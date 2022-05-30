@@ -1,5 +1,17 @@
 --- Here goes a lot of time...
+----------------------------------------------
 
+--
+-- Begin External lua
+--
+require("plugins")
+require("lsp-config")
+
+--
+-- End External lua
+--
+
+----------------------------------------------
 
 --
 -- Begin NeoVim Settings
@@ -92,14 +104,5 @@ vim.opt.diffopt = { "internal", "filler", "closeoff", "hiddenoff", "algorithm:mi
 -- End NeoVim Settings
 --
 
-------------------------------------------------
+----------------------------------------------
 
---
--- Begin External lua
---
-require("plugins")
-require("lsp")
-
---
--- End External lua
---

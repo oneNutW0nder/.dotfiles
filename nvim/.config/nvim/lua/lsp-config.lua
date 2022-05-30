@@ -6,27 +6,51 @@
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append "c"
 
---Lspkind
+-- Lspkind
 local ok, lspkind = pcall(require, "lspkind")
 if not ok then
   return
 end
 lspkind.init()
 
+-- Function for 'super tabbing'
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 -- Setup nvim-cmp.
+local luasnip = require'luasnip'
 local cmp = require'cmp'
 cmp.setup {
   window = {},
   mapping = {
-    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-e>'] = cmp.mapping {
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    },
-    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    -- TODO: Make better keybinds for completion and snippet traversal... Overloading tab this much is toxic
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
   },
   sources = {
     { name = 'nvim_lua' },
@@ -34,11 +58,6 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'path' },
     { name = 'buffer', keyword_length = 5 },
-  },
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-    end,
   },
   formatting = {
     format = lspkind.cmp_format {
@@ -52,8 +71,12 @@ cmp.setup {
       },
     },
   },
-  view = {
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end
   },
+  view = {},
   experimental = {
     ghost_text = false,
   },
@@ -123,11 +146,16 @@ local custom_on_attach = function(client, bufnr)
 end
 
 
+--
 -- Configure LSP Servers
+--
 lsp_installer.setup{}
 local lspconfig = require("lspconfig")
 
+
+--
 -- Golang
+--
 lspconfig.gopls.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
@@ -135,7 +163,14 @@ lspconfig.gopls.setup {
   flags = {},
 }
 
+
+--
 -- Lua
+--
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
 lspconfig.sumneko_lua.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
@@ -144,6 +179,7 @@ lspconfig.sumneko_lua.setup {
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
+        path = runtime_path,
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
