@@ -1,51 +1,81 @@
-local options = {
-  shiftwidth = 4,                          -- the number of spaces inserted for each indentation
-  tabstop = 4,                             -- insert 2 spaces for a tab
-  showtabline = 2,                         -- always show tabs
-  expandtab = true,                        -- convert tabs to spaces
-  smartindent = true,                      -- make indenting smarter again
-  scrolloff = 12,                           -- is one of my fav
-  sidescrolloff = 12,
+-- Lots from TJ: https://github.com/tjdevries/config_manager/blob/1a93f03dfe254b5332b176ae8ec926e69a5d9805/xdg_config/nvim/plugin/options.lua
+vim.g.loaded_matchparen = 1
+local opt = vim.opt
 
-  backup = false,                          -- creates a backup file
-  writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-  swapfile = false,                        -- creates a swapfile
-  undofile = true,                         -- enable persistent undo
+opt.wildignore = "__pycache__"
+opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*", "build", ".git" }
 
-  completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp
-  splitbelow = true,                       -- force all horizontal splits to go below current window
-  splitright = true,                       -- force all vertical splits to go to the right of current window
-  termguicolors = true,                    -- set term gui colors (most terminals support this)
 
-  clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
-  mouse = "a",                             -- allow the mouse to be used in neovim
-  signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
-  spell = true,
+opt.wildmode = "longest:list:full"
+opt.wildoptions = "pum"
 
-  ignorecase = true,                       -- ignore case in search patterns
-  smartcase = true,                        -- smart case
-  pumheight = 10,                          -- pop up menu height
+opt.signcolumn = "yes"
+opt.showmode = false
+opt.showcmd = true
+opt.cmdheight = 1 -- Height of the command bar
+opt.incsearch = true -- Makes search act like search in modern browsers
+opt.showmatch = true -- show matching brackets when text indicator is over them
+opt.relativenumber = false -- Show line numbers
+opt.number = true -- But show the actual number for the line we're on
+opt.ignorecase = true -- Ignore case when searching...
+opt.smartcase = true -- ... unless there is a capital letter in the query
+opt.hidden = true -- I like having buffers stay around
+opt.equalalways = false -- I don't like my windows changing all the time
+opt.splitright = true -- Prefer windows splitting to the right
+opt.splitbelow = true -- Prefer windows splitting to the bottom
+opt.updatetime = 1000 -- Make updates happen faster
+opt.hlsearch = true -- I wouldn't use this without my DoNoHL function
+opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
 
-  cmdheight = 2,                           -- more space in the neovim command line for displaying messages
-  conceallevel = 0,                        -- so that `` is visible in markdown files
-  hlsearch = true,                         -- highlight all matches on previous search pattern
-
-  timeoutlen = 1000,                       -- time to wait for a mapped sequence to complete (in milliseconds)
-  updatetime = 300,                        -- faster completion (4000ms default)
-  cursorline = true,                       -- highlight the current line
-  number = true,                           -- set numbered lines
-  wrap = false,                            -- display lines as one long line
-  fileencoding = "utf-8",                  -- the encoding written to a file
-}
-
-vim.opt.shortmess:append "c"
-
-for k, v in pairs(options) do
-  vim.opt[k] = v
+-- Cursorline highlighting control
+--  Only have it on in the active buffer
+opt.cursorline = true -- Highlight the current line
+local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
+local set_cursorline = function(event, value, pattern)
+  vim.api.nvim_create_autocmd(event, {
+    group = group,
+    pattern = pattern,
+    callback = function()
+      vim.opt_local.cursorline = value
+    end,
+  })
 end
+set_cursorline("WinLeave", false)
+set_cursorline("WinEnter", true)
+set_cursorline("FileType", false, "TelescopePrompt")
 
-vim.cmd("colorscheme gruvbox")
+-- Tabs
+opt.autoindent = true
+opt.cindent = true
+opt.wrap = true
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.expandtab = true
+
+opt.breakindent = true
+opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+opt.linebreak = true
+
+opt.belloff = "all" -- Just turn the dang bell off
+
+opt.clipboard = "unnamedplus"
+opt.swapfile = false -- Living on the edge
+opt.inccommand = 'split'
+opt.shada = { "!", "'1000", "<50", "s10", "h" }
+
+opt.formatoptions = opt.formatoptions
+  - "a" -- Auto formatting is BAD.
+  - "t" -- Don't auto format my code. I got linters for that.
+  + "c" -- In general, I like it when comments respect textwidth
+  + "q" -- Allow formatting comments w/ gq
+  - "o" -- O and o, don't continue comments
+  + "r" -- But do continue when pressing enter.
+  + "n" -- Indent past the formatlistpat, not underneath it.
+  + "j" -- Auto-remove comments if possible.
+  - "2" -- I'm not in gradeschool anymore
+
+opt.fillchars = { eob = "~" }
+
+vim.opt.diffopt = { "internal", "filler", "closeoff", "hiddenoff", "algorithm:minimal" }
