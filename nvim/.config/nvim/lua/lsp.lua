@@ -6,37 +6,58 @@
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append "c"
 
+--Lspkind
+local ok, lspkind = pcall(require, "lspkind")
+if not ok then
+  return
+end
+lspkind.init()
 
 -- Setup nvim-cmp.
 local cmp = require'cmp'
-cmp.setup({
+cmp.setup {
+  window = {},
+  mapping = {
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-e>'] = cmp.mapping {
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    },
+    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = {
+    { name = 'nvim_lua' },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'path' },
+    { name = 'buffer', keyword_length = 5 },
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+  formatting = {
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        nvim_lsp = "[lsp]",
+        nvim_lua = "[api]",
+        luasnip = "[snip]",
+        path = "[path]",
+        buffer = "[buffer]",
+      },
+    },
   },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-e>'] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' }, -- For luasnip users.
-    { name = "path" },
-    { name = 'buffer', keyword_length = 5 },
-  })
-})
+  view = {
+  },
+  experimental = {
+    ghost_text = false,
+  },
+}
 
 
 -- Use an on_attach function to only map the following keys
@@ -58,7 +79,7 @@ lsp_installer.settings({
 
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local on_attach = function(client, bufnr)
+local custom_on_attach = function(client, bufnr)
 
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -109,7 +130,7 @@ local lspconfig = require("lspconfig")
 -- Golang
 lspconfig.gopls.setup {
   capabilities = capabilities,
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   settings = {},
   flags = {},
 }
@@ -117,7 +138,7 @@ lspconfig.gopls.setup {
 -- Lua
 lspconfig.sumneko_lua.setup {
   capabilities = capabilities,
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   settings = {
     Lua = {
       runtime = {
