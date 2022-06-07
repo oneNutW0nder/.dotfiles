@@ -2,11 +2,67 @@
 -- Begin NeoVim Settings
 --
 
+local opt = vim.opt
+local g = vim.g
+
+g.gruvbox_contrast_dark = "hard"
 vim.cmd("colorscheme gruvbox")
 
--- Lots from TJ: https://github.com/tjdevries/config_manager/blob/1a93f03dfe254b5332b176ae8ec926e69a5d9805/xdg_config/nvim/plugin/options.lua
-local opt = vim.opt
+opt.termguicolors = true
+opt.syntax = "on"
+opt.background = "dark"
 
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.scrolloff = 12
+opt.sidescrolloff = 12
+opt.number = true
+-- opt.relativenumber = true
+opt.colorcolumn = "88"
+opt.signcolumn = "yes"
+
+opt.confirm = true
+opt.spell = true
+opt.backup = false
+opt.writebackup = false
+opt.mouse = "a"
+
+opt.hidden = true
+opt.wrap = false
+opt.title = true
+
+opt.updatetime = 300
+opt.redrawtime = 10000
+opt.showmode = true
+opt.cmdheight = 2
+
+-- Cursorline highlighting control
+--  Only have it on in the active buffer
+opt.cursorline = true -- Highlight the current line
+local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
+local set_cursorline = function(event, value, pattern)
+  vim.api.nvim_create_autocmd(event, {
+    group = group,
+    pattern = pattern,
+    callback = function()
+      vim.opt_local.cursorline = value
+    end,
+  })
+end
+set_cursorline("WinLeave", false)
+set_cursorline("WinEnter", true)
+set_cursorline("FileType", false, "TelescopePrompt")
+
+--[[
+set cmdheight=2 " Used to make messages display better
+set showmode
+]]--
+
+-- Lots from TJ: https://github.com/tjdevries/config_manager/blob/1a93f03dfe254b5332b176ae8ec926e69a5d9805/xdg_config/nvim/plugin/options.lua
+
+--[[
 opt.wildignore = "__pycache__"
 opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*", "build", ".git" }
 
@@ -32,22 +88,6 @@ opt.updatetime = 1000 -- Make updates happen faster
 opt.hlsearch = true -- I wouldn't use this without my DoNoHL function
 opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
 
--- Cursorline highlighting control
---  Only have it on in the active buffer
-opt.cursorline = true -- Highlight the current line
-local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
-local set_cursorline = function(event, value, pattern)
-  vim.api.nvim_create_autocmd(event, {
-    group = group,
-    pattern = pattern,
-    callback = function()
-      vim.opt_local.cursorline = value
-    end,
-  })
-end
-set_cursorline("WinLeave", false)
-set_cursorline("WinEnter", true)
-set_cursorline("FileType", false, "TelescopePrompt")
 
 -- Tabs
 opt.autoindent = true
@@ -88,6 +128,7 @@ vim.opt.diffopt = { "internal", "filler", "closeoff", "hiddenoff", "algorithm:mi
 --
 -- End NeoVim Settings
 --
+]]--
 
 ----------------------------------------------
 
