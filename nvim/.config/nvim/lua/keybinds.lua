@@ -26,3 +26,7 @@ mapper("", "Y", "y$", { noremap = true, silent = true } )
 -- Allow gf to open non-existent files
 mapper("", "gf", ":edit <cfile><cr>", { silent = true } )
 
+-- search matches in the middle of the window
+mapper('n', 'n', 'nzzzv', { silent = true } )
+mapper('n', 'N', 'Nzzzv', { silent = true } )
+
