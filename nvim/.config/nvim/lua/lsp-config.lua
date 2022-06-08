@@ -152,7 +152,6 @@ end
 lsp_installer.setup{}
 local lspconfig = require("lspconfig")
 
-
 --
 -- Golang
 --
