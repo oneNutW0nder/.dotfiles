@@ -104,28 +104,27 @@ lsp_installer.settings({
 -- nmap{"C-f", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>"}
 -- nmap{"<leader>lg", "<cmd>Telescope live_grep<CR>"}
 
-
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local custom_on_attach = function(client, bufnr)
-
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
+local custom_on_attach = function(client)
 
   -- Mappings
-  local opts = { noremap = true, silent = true}
+  local opts = { noremap = true, silent = true, buffer = 0 }
 
   -- TODO --> Make these work with telescope where it makes sense
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0}) -- Sets keymap for current buffer in normal mode 'K'
-  vim.keymap.set("n", "gd", telescope.lsp_definitions, {buffer = 0})
-  vim.keymap.set("n", "gi", telescope.lsp_implementations, {buffer = 0})
-  vim.keymap.set("n", "gr", telescope.lsp_references, {buffer = 0})
-  vim.keymap.set("n", "gt", telescope.lsp_type_definitions, {buffer = 0})
-  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {buffer = 0})
-  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, {buffer = 0})
-  vim.keymap.set("n", "<space>da", telescope.diagnostics, {buffer = 0})
-  vim.keymap.set("n", "<space>dj", vim.diagnostic.goto_next, {buffer = 0})
-  vim.keymap.set("n", "<space>dk", vim.diagnostic.goto_prev, {buffer = 0})
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts ) -- Sets keymap for current buffer in normal mode 'K'
+  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts )
+  vim.keymap.set("n", "gd", telescope.lsp_definitions, opts )
+  vim.keymap.set("n", "gi", telescope.lsp_implementations, opts )
+  vim.keymap.set("n", "gr", telescope.lsp_references, opts )
+  vim.keymap.set("n", "gt", telescope.lsp_type_definitions, opts )
+  vim.keymap.set("n", "<leader>o", telescope.treesitter, opts )
+--  vim.keymap.set("n", "<leader>ff", vim.lsp.buf.formatting, opts )
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts )
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts )
+  vim.keymap.set("n", "<leader>da", telescope.diagnostics, opts )
+  vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, opts )
+  vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, opts )
 
   -- vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
   -- vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer = 0})
