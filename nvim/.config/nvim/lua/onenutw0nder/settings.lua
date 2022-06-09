@@ -33,8 +33,8 @@ opt.hidden = true
 opt.wrap = false
 opt.title = true
 
-opt.updatetime = 300
-opt.redrawtime = 10000
+opt.updatetime = 1000
+--opt.redrawtime = 10000
 opt.showmode = true
 opt.cmdheight = 2
 
