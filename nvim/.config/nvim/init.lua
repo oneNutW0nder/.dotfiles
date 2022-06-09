@@ -13,6 +13,7 @@ require("onenutw0nder.keybinds")
 require("onenutw0nder.settings")
 require("onenutw0nder.plugins")
 require("onenutw0nder.lsp-config")
+require("onenutw0nder.treesitter")
 
 --
 -- End External lua
