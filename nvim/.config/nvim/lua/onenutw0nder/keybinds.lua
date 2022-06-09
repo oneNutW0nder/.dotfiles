@@ -40,7 +40,12 @@ vim.api.nvim_set_keymap("n", "<leader>ss", ":lua require('telescope.builtin').gr
 -- Grep for string under the cursor and filter with telescope
 vim.api.nvim_set_keymap("n", "<leader>sw", ":lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')})<cr>", opts )
 
+
+mapper("n", "<leader>lg", telescope.live_grep, opts )
 mapper("n", "<leader>sf", telescope.find_files, opts )
 mapper("n", "<leader>sb", telescope.buffers, opts )
 mapper("n", "<leader>sg", telescope.git_files, opts )
 mapper("n", "<leader>fl", telescope.quickfix, opts )
+mapper("n", "<leader>vh", telescope.help_tags, opts )
+mapper("n", "<leader>tla", telescope.builtin, opts )
+
