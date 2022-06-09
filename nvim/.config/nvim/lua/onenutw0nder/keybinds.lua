@@ -43,3 +43,4 @@ vim.api.nvim_set_keymap("n", "<leader>sw", ":lua require('telescope.builtin').gr
 mapper("n", "<leader>sf", telescope.find_files, opts )
 mapper("n", "<leader>sb", telescope.buffers, opts )
 mapper("n", "<leader>sg", telescope.git_files, opts )
+mapper("n", "<leader>fl", telescope.quickfix, opts )
