@@ -117,12 +117,13 @@ local custom_on_attach = function(client, bufnr)
 
   -- TODO --> Make these work with telescope where it makes sense
   vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0}) -- Sets keymap for current buffer in normal mode 'K'
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = 0})
+  vim.keymap.set("n", "gd", telescope.lsp_definitions, {buffer = 0})
+  vim.keymap.set("n", "gi", telescope.lsp_implementations, {buffer = 0})
   vim.keymap.set("n", "gr", telescope.lsp_references, {buffer = 0})
   vim.keymap.set("n", "gt", telescope.lsp_type_definitions, {buffer = 0})
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {buffer = 0})
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, {buffer = 0})
+  vim.keymap.set("n", "<space>da", telescope.diagnostics, {buffer = 0})
   vim.keymap.set("n", "<space>dj", vim.diagnostic.goto_next, {buffer = 0})
   vim.keymap.set("n", "<space>dk", vim.diagnostic.goto_prev, {buffer = 0})
 
