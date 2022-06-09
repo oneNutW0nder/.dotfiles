@@ -2,9 +2,13 @@
 -- LSP Config
 --
 
+local telescope = require("telescope.builtin")
+
 -- Menu stuff
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append "c"
+vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+
 
 -- Lspkind
 local ok, lspkind = pcall(require, "lspkind")
@@ -115,12 +119,15 @@ local custom_on_attach = function(client, bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0}) -- Sets keymap for current buffer in normal mode 'K'
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = 0})
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer = 0})
-  vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
+  vim.keymap.set("n", "gr", telescope.lsp_references, {buffer = 0})
+  vim.keymap.set("n", "gt", telescope.lsp_type_definitions, {buffer = 0})
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {buffer = 0})
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, {buffer = 0})
   vim.keymap.set("n", "<space>dj", vim.diagnostic.goto_next, {buffer = 0})
   vim.keymap.set("n", "<space>dk", vim.diagnostic.goto_prev, {buffer = 0})
+
+  -- vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
+  -- vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer = 0})
 
 	-- Set autocommands conditional on server_capabilities
   if client.server_capabilities.document_formatting then
