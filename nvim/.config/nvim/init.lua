@@ -9,6 +9,7 @@
 -- Begin External lua
 --
 
+require("onenutw0nder.keybinds")
 require("onenutw0nder.settings")
 require("onenutw0nder.plugins")
 require("onenutw0nder.lsp-config")
