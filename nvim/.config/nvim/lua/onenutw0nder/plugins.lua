@@ -42,7 +42,7 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/popup.nvim" -- This is some popup API thing... Not sure what it is for
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
   -- cmp plugins
@@ -54,6 +54,10 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip"
   use "onsails/lspkind.nvim"
 
+  -- LSP
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+
   -- Colorscheme
   use "gruvbox-community/gruvbox"
 
@@ -61,9 +65,10 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
-  -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+    }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

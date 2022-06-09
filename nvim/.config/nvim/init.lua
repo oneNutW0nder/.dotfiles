@@ -9,9 +9,9 @@
 -- Begin External lua
 --
 
-require("settings")
-require("plugins")
-require("lsp-config")
+require("onenutw0nder.settings")
+require("onenutw0nder.plugins")
+require("onenutw0nder.lsp-config")
 
 --
 -- End External lua
