@@ -40,10 +40,16 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
+  -- General dependencies
   use "wbthomason/packer.nvim" -- Have packer manage itself
-  -- use "nvim-lua/popup.nvim" -- This is some popup API thing... Not sure what it is for
+  use "nvim-lua/popup.nvim" -- This is some popup API thing... Not sure what it is for
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+
+  -- Status line
+  use {
+  'nvim-lualine/lualine.nvim',
+  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
