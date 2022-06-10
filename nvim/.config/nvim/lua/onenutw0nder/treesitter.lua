@@ -1,5 +1,4 @@
 require("nvim-treesitter.configs").setup {
-
   ensure_installed = { "cpp", "c", "rust", "go", "lua" },
   highlight = {
     enable = true,
@@ -7,9 +6,13 @@ require("nvim-treesitter.configs").setup {
     additional_vim_regex_highlighting = false,
   },
   incremental_selection = {
-    enable = true
+    enable = true,
   },
   textObjects = {
-    enable = true
+    enable = true,
+  },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
   },
 }
