@@ -5,8 +5,18 @@
 local opt = vim.opt
 local g = vim.g
 
+g.loaded_matchparen = 1 -- Disable matching paren highlighting
+
 g.gruvbox_contrast_dark = "hard"
+g.gruvbox_italic = 1
+g.gruvbox_italicize_strings = 0
 vim.cmd("colorscheme gruvbox")
+
+--[[ This is weird and I don't think I like how aggressive this scheme is
+g.gruvbox_baby_transparent_mode = 0
+g.gruvbox_baby_telescope_theme = 1
+g.gruvbox_baby_background_color = "hard"
+vim.cmd("colorscheme gruvbox-baby") ]]
 
 opt.termguicolors = true
 opt.syntax = "on"
@@ -33,10 +43,10 @@ opt.hidden = true
 opt.wrap = false
 opt.title = true
 
-opt.updatetime = 1000
+opt.updatetime = 50 -- Setting used by 'ThePrimeagen'
 --opt.redrawtime = 10000
 opt.showmode = true
-opt.cmdheight = 2
+opt.cmdheight = 1
 
 -- Cursorline highlighting control
 --  Only have it on in the active buffer
