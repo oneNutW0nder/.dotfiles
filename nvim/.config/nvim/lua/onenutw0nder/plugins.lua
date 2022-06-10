@@ -60,6 +60,7 @@ return packer.startup(function(use)
 
   -- Colorscheme
   use "gruvbox-community/gruvbox"
+  use { 'luisiacc/gruvbox-baby', branch = 'main' }
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -69,6 +70,7 @@ return packer.startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'
   }
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- Telescope
   use {
@@ -79,8 +81,9 @@ return packer.startup(function(use)
     'nvim-telescope/telescope-fzf-native.nvim', run = 'make'
   }
 
-  -- Comments
+  -- Text manipulation
   use "numToStr/Comment.nvim"
+  use "windwp/nvim-autopairs"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
