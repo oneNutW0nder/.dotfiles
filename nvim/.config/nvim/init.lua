@@ -15,6 +15,7 @@ require("onenutw0nder.plugins")
 require("onenutw0nder.lsp-config")
 require("onenutw0nder.telescope")
 require("onenutw0nder.treesitter")
+require("onenutw0nder.comments")
 
 --
 -- End External lua
