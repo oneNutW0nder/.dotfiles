@@ -5,8 +5,14 @@
 local opt = vim.opt
 local g = vim.g
 
-g.loaded_matchparen = 1 -- Disable matching paren highlighting
+-- Status line stuff
+opt.laststatus = 3
+require("lualine").setup( { options = { theme = "gruvbox" } } )
 
+-- Disable matching paren highlighting
+g.loaded_matchparen = 1
+
+-- color scheme
 g.gruvbox_contrast_dark = "hard"
 g.gruvbox_italic = 1
 g.gruvbox_italicize_strings = 0
@@ -18,6 +24,9 @@ g.gruvbox_baby_telescope_theme = 1
 g.gruvbox_baby_background_color = "hard"
 vim.cmd("colorscheme gruvbox-baby") ]]
 
+-- General settings
+opt.wildignore = "__pycache__"
+opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*", "build", ".git" }
 opt.termguicolors = true
 opt.syntax = "on"
 opt.background = "dark"
@@ -28,22 +37,31 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.scrolloff = 12
 opt.sidescrolloff = 12
-opt.number = true
--- opt.relativenumber = true
 opt.colorcolumn = "88"
 opt.signcolumn = "yes"
+opt.number = true
+-- opt.relativenumber = true
 
 opt.confirm = true
 opt.spell = true
 opt.backup = false
 opt.writebackup = false
 opt.mouse = "a"
+opt.ignorecase = true -- Ignore case when searching...
+opt.smartcase = true -- ... unless there is a capital letter in the query
+opt.splitright = true -- Prefer windows splitting to the right
+opt.splitbelow = true -- Prefer windows splitting to the bottom
+opt.breakindent = true
+opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+opt.linebreak = true
+
+opt.belloff = "all" -- Just turn the dang bell off
 
 opt.hidden = true
 opt.wrap = false
 opt.title = true
 
-opt.updatetime = 50 -- Setting used by 'ThePrimeagen'
+-- opt.updatetime = 50 -- Setting used by 'ThePrimeagen'
 --opt.redrawtime = 10000
 opt.showmode = true
 opt.cmdheight = 1
