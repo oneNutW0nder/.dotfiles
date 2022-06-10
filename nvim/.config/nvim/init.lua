@@ -2,8 +2,12 @@
 ----------------------------------------------
 
 -- TODO:
---  Breakout settings and maps into separate files again... this is too messy
---  See this format of breaking out: https://github.com/icyphox/dotfiles/tree/master/config/nvim
+  -- Make all of the lua files more organized with some kind of folder structure
+  -- Switch color scheme to: https://github.com/luisiacc/gruvbox-baby (better treesitter support)
+  -- Add windwp/nvim-autopairs for better experience
+  -- Get treesitter figured out and configured for actual use
+  -- Get telescope binds figured out for actual use
+  -- Get git integration and icons in the sign column (maybe something like LazyGit)
 
 --
 -- Begin External lua
