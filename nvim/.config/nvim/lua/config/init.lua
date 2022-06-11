@@ -1,0 +1,7 @@
+require("config.settings")
+require("config.keybinds")
+require("config.treesitter")
+require("config.telescope")
+require("config.autopairs")
+require("config.comments")
+require("config.lsp-config")
