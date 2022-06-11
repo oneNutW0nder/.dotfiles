@@ -51,6 +51,10 @@ return packer.startup(function(use)
   requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
+  -- LSP
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-nvim-lsp"
@@ -60,36 +64,35 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip"
   use "onsails/lspkind.nvim"
 
-  -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  -- snippets
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+
 
   -- Colorscheme
   use "gruvbox-community/gruvbox"
   use { 'luisiacc/gruvbox-baby', branch = 'main' }
 
-  -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- Treesitter
-  use {
-    'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'
-  }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- Telescope
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-  use {
-    'nvim-telescope/telescope-fzf-native.nvim', run = 'make'
-  }
+  use { 'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim'} } }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Text manipulation
   use "numToStr/Comment.nvim"
   use "windwp/nvim-autopairs"
+
+  -- Git stuff
+  use {
+  'lewis6991/gitsigns.nvim',
+  config = function()
+    require('gitsigns').setup()
+  end
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
