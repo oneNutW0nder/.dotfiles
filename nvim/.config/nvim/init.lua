@@ -19,14 +19,8 @@
 -- Begin External lua
 --
 
-require("onenutw0nder.keybinds")
-require("onenutw0nder.settings")
-require("onenutw0nder.plugins")
-require("onenutw0nder.lsp-config")
-require("onenutw0nder.telescope")
-require("onenutw0nder.treesitter")
-require("onenutw0nder.comments")
-require("onenutw0nder.autopairs")
+require("config")
+require("plugins")
 
 --
 -- End External lua
