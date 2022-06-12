@@ -7,7 +7,7 @@ local g = vim.g
 
 -- Status line stuff
 opt.laststatus = 3
-require("lualine").setup( { options = { theme = "gruvbox" } } )
+require("lualine").setup({ options = { theme = "gruvbox" } })
 
 -- Disable matching paren highlighting
 g.loaded_matchparen = 1
@@ -83,10 +83,23 @@ set_cursorline("WinLeave", false)
 set_cursorline("WinEnter", true)
 set_cursorline("FileType", false, "TelescopePrompt")
 
+-- Highlight on yank
+vim.cmd([[
+  augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
+  augroup END
+]])
+--[[ local yankGrp = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+  command = "silent! lua vim.highlight.on_yank({timeout = 40})",
+  group = yankGrp,
+}) ]]
+
 --[[
 set cmdheight=2 " Used to make messages display better
 set showmode
-]]--
+]] --
 
 -- Lots from TJ: https://github.com/tjdevries/config_manager/blob/1a93f03dfe254b5332b176ae8ec926e69a5d9805/xdg_config/nvim/plugin/options.lua
 
@@ -156,7 +169,6 @@ vim.opt.diffopt = { "internal", "filler", "closeoff", "hiddenoff", "algorithm:mi
 --
 -- End NeoVim Settings
 --
-]]--
+]] --
 
 ----------------------------------------------
-
