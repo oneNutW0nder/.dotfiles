@@ -3,16 +3,12 @@
 
 -- TODO:
   -- Make snippets useful and the keybinds friendly
-  -- Make jumping to definitions and things work with and without telescope (if there is only 1 place to go; don't open telesocpe)
-  -- Make all of the lua files more organized with some kind of folder structure
-  -- Get treesitter figured out and configured for actual use
-  -- Get telescope binds figured out for actual use
-  -- Get git integration and icons in the sign column (maybe something like LazyGit)
+  -- Get 'floaterm' and 'lazygit' working in neovim
+  -- Get a couple auto commands working like 'highlight on yank'
+  -- Configure comments to nicely not continue when hitting enter on a line (<cr> twice makes the comment disappear?)
+  -- Set telescope as the vim.ui? (allows most UI windows/popups to be handled by telescope)
+  -- configure some of the LSP servers that were stubbed out
   --
-  -- New project layout that will improve organization and hopefully load time!
-    -- init.lua --> should only require 'config' and 'plugins' (maybe a 'utils')
-      -- Everything will be configured in 'plugins' and settings contained in respective files in 'lua/config/'
-    -- Layout will be similar to: https://github.com/alpha2phi/neovim-for-beginner
 
 
 --
