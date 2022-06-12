@@ -173,10 +173,100 @@ lspconfig.gopls.setup {
   flags = {},
 }
 
+--
+-- Python
+--
+lspconfig.pyright.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
+  flags = {},
+}
+
+--
+-- Rust
+--
+lspconfig.rust_analyzer.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
+  flags = {},
+}
+
+--
+-- C / C++
+--
+lspconfig.clangd.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
+  flags = {},
+}
+
+--
+-- PHP
+--
+lspconfig.intelephense.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
+  flags = {},
+}
+
+--
+-- JS / Typescript
+--
+lspconfig.tsserver.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
+  flags = {},
+}
+
+--
+-- Json
+--
+lspconfig.jsonls.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
+  flags = {},
+}
+
+--
+-- HTML
+--
+lspconfig.html.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
+  flags = {},
+}
+
+--
+-- Docker
+--
+lspconfig.dockerls.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
+  flags = {},
+}
+
+--
+-- Vim
+--
+lspconfig.vimls.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
+  flags = {},
+}
 
 --
 -- Lua
 --
+-- I think there might be something whack with this server... it loads so slow and misses some things
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
