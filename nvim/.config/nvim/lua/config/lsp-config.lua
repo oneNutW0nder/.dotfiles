@@ -7,7 +7,7 @@ local telescope = require("telescope.builtin")
 -- Menu stuff
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append "c"
-vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+vim.g.completion_matching_strategy_list = { 'exact', 'substring', 'fuzzy' }
 
 
 -- Lspkind
@@ -24,8 +24,8 @@ local has_words_before = function()
 end
 
 -- Setup nvim-cmp.
-local luasnip = require'luasnip'
-local cmp = require'cmp'
+local luasnip = require 'luasnip'
+local cmp = require 'cmp'
 cmp.setup {
   window = {},
   mapping = {
@@ -111,44 +111,46 @@ local custom_on_attach = function(client)
   local opts = { noremap = true, silent = true, buffer = 0 }
 
   -- TODO --> Make these work with telescope where it makes sense
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts ) -- Sets keymap for current buffer in normal mode 'K'
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- Sets keymap for current buffer in normal mode 'K'
   vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts )
-  vim.keymap.set("n", "gd", telescope.lsp_definitions, opts )
-  vim.keymap.set("n", "gi", telescope.lsp_implementations, opts )
-  vim.keymap.set("n", "gr", telescope.lsp_references, opts )
-  vim.keymap.set("n", "gt", telescope.lsp_type_definitions, opts )
-  vim.keymap.set("n", "<leader>o", telescope.treesitter, opts )
---  vim.keymap.set("n", "<leader>ff", vim.lsp.buf.formatting, opts )
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts )
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts )
-  vim.keymap.set("n", "<leader>da", telescope.diagnostics, opts )
-  vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, opts )
-  vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, opts )
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+  vim.keymap.set("n", "gd", telescope.lsp_definitions, opts)
+  vim.keymap.set("n", "gi", telescope.lsp_implementations, opts)
+  vim.keymap.set("n", "gr", telescope.lsp_references, opts)
+  vim.keymap.set("n", "gt", telescope.lsp_type_definitions, opts)
+  vim.keymap.set("n", "<leader>o", telescope.treesitter, opts)
+  vim.keymap.set("n", "<leader>ff", vim.lsp.buf.formatting, opts)
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "<leader>da", telescope.diagnostics, opts)
+  vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, opts)
 
   -- vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
   -- vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer = 0})
 
-	-- Set autocommands conditional on server_capabilities
+  -- Set autocommands conditional on server_capabilities
+  -- TODO: These are broken AF
   if client.server_capabilities.document_formatting then
-		vim.cmd([[
+    vim.cmd([[
 			augroup formatting
 				autocmd! * <buffer>
 				autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
 				autocmd BufWritePre <buffer> lua OrganizeImports(1000)
 			augroup END
-		]])
-	end
+		]] )
+  end
 
-	if client.server_capabilities.document_highlight then
-		vim.cmd([[
+  -- TODO: These are broken AF
+  if client.server_capabilities.document_highlight then
+    vim.cmd([[
 			augroup lsp_document_highlight
 				autocmd! * <buffer>
 				autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
 				autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
 			augroup END
-		]])
-	end
+		]] )
+  end
 
 end
 
@@ -160,7 +162,7 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = 
 --
 -- Configure LSP Servers
 --
-lsp_installer.setup{}
+lsp_installer.setup {}
 local lspconfig = require("lspconfig")
 
 --
@@ -283,7 +285,7 @@ lspconfig.sumneko_lua.setup {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
