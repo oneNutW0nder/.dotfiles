@@ -1,5 +1,20 @@
 require("nvim-treesitter.configs").setup {
-  ensure_installed = { "cpp", "c", "rust", "go", "lua" },
+  ensure_installed = {
+    "cpp",
+    "c",
+    "rust",
+    "go",
+    "lua",
+    "python",
+    "html",
+    "php",
+    "json",
+    "llvm",
+    "dockerfile",
+    "cmake",
+    "yaml",
+    "toml"
+  },
   highlight = {
     enable = true,
     disable = {  },
