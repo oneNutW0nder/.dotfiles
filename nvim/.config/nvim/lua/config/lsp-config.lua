@@ -263,6 +263,16 @@ lspconfig.dockerls.setup {
 }
 
 --
+-- TOML
+--
+lspconfig.taplo.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
+  flags = {},
+}
+
+--
 -- Vim
 --
 lspconfig.vimls.setup {
