@@ -268,7 +268,9 @@ lspconfig.dockerls.setup {
 lspconfig.taplo.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
-  settings = {},
+  settings = {
+    cmd = "/Users/onenutw0nder/.cargo/bin/taplo lsp stdio",
+  },
   flags = {},
 }
 
