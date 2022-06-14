@@ -39,6 +39,7 @@ alias work="cd $HOME/dev/metactf/content/"
 
 # User Vars
 export LC_ALL=en_US.UTF-8
+export CARGO_NET_GIT_FETCH_WITH_CLI=true # Allows cargo to download things without getting mad
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="/usr/local/sbin:$PATH"
