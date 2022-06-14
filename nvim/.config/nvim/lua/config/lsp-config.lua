@@ -181,7 +181,14 @@ lspconfig.gopls.setup {
 lspconfig.pyright.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
-  settings = {},
+  settings = {
+    python = {
+      pythonPath = "python3",
+      analysis = {
+        diagnosticMode = "openFilesOnly"
+      }
+    }
+  },
   flags = {},
 }
 
