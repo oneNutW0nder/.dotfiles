@@ -68,20 +68,20 @@ set_cursorline("WinEnter", true)
 set_cursorline("FileType", false, "TelescopePrompt")
 
 -- color scheme - vim.cmd settings are from 'ThePrimeagen'
-g.gruvbox_contrast_dark = "hard"
+g.gruvbox_contrast_dark = "medium"
 g.gruvbox_italic = 1
 g.gruvbox_italicize_strings = 0
 g.gruvbox_invert_selection = 0
-g.gruvbox_invert_signs = 1
-vim.cmd [[ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" ]]
-vim.cmd [[ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" ]]
+g.gruvbox_invert_signs = 0
 vim.cmd [[ colorscheme gruvbox ]]
-vim.cmd [[ hi CursorLineNR guibg=None ]]
-vim.cmd [[ highlight Normal guibg=none ]]
-vim.cmd [[ highlight LineNr guifg=#5eacd3 ]]
-vim.cmd [[ highlight netrwDir guifg=#5eacd3 ]]
-vim.cmd [[ highlight qfFileName guifg=#aed75f ]]
-vim.cmd [[ hi TelescopeBorder guifg=#5eacd ]]
+-- vim.cmd [[ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" ]]
+-- vim.cmd [[ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" ]]
+-- vim.cmd [[ hi CursorLineNR guibg=None ]]
+-- vim.cmd [[ highlight Normal guibg=none ]]
+-- vim.cmd [[ highlight LineNr guifg=#5eacd3 ]]
+-- vim.cmd [[ highlight netrwDir guifg=#5eacd3 ]]
+-- vim.cmd [[ highlight qfFileName guifg=#aed75f ]]
+-- vim.cmd [[ hi TelescopeBorder guifg=#5eacd ]]
 
 --[[ This is weird and I don't think I like how aggressive this scheme is
 g.gruvbox_baby_transparent_mode = 0

@@ -98,8 +98,11 @@ return packer.startup(function(use)
     disable = true,
   }
 
+  -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', disable = false }
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use { 'JoosepAlviste/nvim-ts-context-commentstring' }
+  use { 'nvim-treesitter/playground' }
+
 
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' } } }
