@@ -1,4 +1,4 @@
-local M = { }
+local M = {}
 local fn = vim.fn
 
 -- Automatically install packer
@@ -48,8 +48,8 @@ return packer.startup(function(use)
 
   -- Status line
   use {
-  'nvim-lualine/lualine.nvim',
-  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   -- LSP
@@ -87,22 +87,22 @@ return packer.startup(function(use)
     disable = true
   }
   use {
-      "sainnhe/gruvbox-material",
-      config = function()
-        -- vim.g.gruvbox_material_foreground = "original"
-        -- vim.g.gruvbox_material_background = "hard"
-        -- vim.g.gruvbox_material_better_performance = 1
-        -- vim.g.gruvbox_material_enable_bold = 1
-        -- vim.cmd "colorscheme gruvbox-material"
-      end,
-      disable = true,
-    }
+    "sainnhe/gruvbox-material",
+    config = function()
+      -- vim.g.gruvbox_material_foreground = "original"
+      -- vim.g.gruvbox_material_background = "hard"
+      -- vim.g.gruvbox_material_better_performance = 1
+      -- vim.g.gruvbox_material_enable_bold = 1
+      -- vim.cmd "colorscheme gruvbox-material"
+    end,
+    disable = true,
+  }
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', disable = false }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- Telescope
-  use { 'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim'} } }
+  use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' } } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Text manipulation
@@ -111,10 +111,18 @@ return packer.startup(function(use)
 
   -- Git stuff
   use {
-  'lewis6991/gitsigns.nvim',
-  config = function()
-    require('gitsigns').setup()
-  end
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup {
+        signs = {
+          add          = { hl = 'GitSignsAdd', text = '+', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+          change       = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+          delete       = { hl = 'GitSignsDelete', text = '_', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+          topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+          changedelete = { hl = 'GitSignsChange', text = '≃', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+        },
+      }
+    end
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
