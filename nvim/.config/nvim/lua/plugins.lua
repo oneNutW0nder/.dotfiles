@@ -71,12 +71,34 @@ return packer.startup(function(use)
 
 
   -- Colorscheme
-  use "gruvbox-community/gruvbox"
-  use { 'luisiacc/gruvbox-baby', branch = 'main' }
+  use {
+    "gruvbox-community/gruvbox",
+    -- config = function()
+    --   vim.g.gruvbox_contrast_dark = "soft"
+    --   vim.g.gruvbox_italic = 1
+    --   vim.g.gruvbox_italicize_strings = 0
+    --   vim.cmd("colorscheme gruvbox")
+    -- end,
+    disable = false,
+  }
+  use {
+    'luisiacc/gruvbox-baby',
+    branch = 'main',
+    disable = true
+  }
+  use {
+      "sainnhe/gruvbox-material",
+      config = function()
+        -- vim.g.gruvbox_material_foreground = "original"
+        -- vim.g.gruvbox_material_background = "hard"
+        -- vim.g.gruvbox_material_better_performance = 1
+        -- vim.g.gruvbox_material_enable_bold = 1
+        -- vim.cmd "colorscheme gruvbox-material"
+      end,
+      disable = true,
+    }
 
-
-  -- Treesitter
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', disable = false }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- Telescope
