@@ -8,13 +8,11 @@ local g = vim.g
 -- Disable matching paren highlighting
 g.loaded_matchparen = 1
 
-
-
 -- General settings
 opt.wildignore = "__pycache__"
 opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*", "build", ".git" }
 opt.termguicolors = true
-opt.syntax = "on"
+-- opt.syntax = "on"
 opt.background = "dark"
 
 opt.tabstop = 2
