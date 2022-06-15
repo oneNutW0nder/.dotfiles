@@ -68,7 +68,7 @@ set_cursorline("WinEnter", true)
 set_cursorline("FileType", false, "TelescopePrompt")
 
 -- color scheme - vim.cmd settings are from 'ThePrimeagen'
-g.gruvbox_contrast_dark = "medium"
+g.gruvbox_contrast_dark = "soft"
 g.gruvbox_italic = 1
 g.gruvbox_italicize_strings = 0
 g.gruvbox_invert_selection = 0
