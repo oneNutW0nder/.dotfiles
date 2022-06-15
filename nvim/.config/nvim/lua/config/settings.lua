@@ -5,24 +5,10 @@
 local opt = vim.opt
 local g = vim.g
 
--- Status line stuff
-opt.laststatus = 3
-require("lualine").setup({ options = { theme = "gruvbox" } })
-
 -- Disable matching paren highlighting
 g.loaded_matchparen = 1
 
--- color scheme
-g.gruvbox_contrast_dark = "hard"
-g.gruvbox_italic = 1
-g.gruvbox_italicize_strings = 0
-vim.cmd("colorscheme gruvbox")
 
---[[ This is weird and I don't think I like how aggressive this scheme is
-g.gruvbox_baby_transparent_mode = 0
-g.gruvbox_baby_telescope_theme = 1
-g.gruvbox_baby_background_color = "hard"
-vim.cmd("colorscheme gruvbox-baby") ]]
 
 -- General settings
 opt.wildignore = "__pycache__"
@@ -82,6 +68,38 @@ end
 set_cursorline("WinLeave", false)
 set_cursorline("WinEnter", true)
 set_cursorline("FileType", false, "TelescopePrompt")
+
+-- color scheme - vim.cmd settings are from 'ThePrimeagen'
+g.gruvbox_contrast_dark = "hard"
+g.gruvbox_italic = 1
+g.gruvbox_italicize_strings = 0
+g.gruvbox_invert_selection = 0
+vim.cmd [[ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" ]]
+vim.cmd [[ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" ]]
+vim.cmd [[ colorscheme gruvbox ]]
+vim.cmd [[ hi CursorLineNR guibg=None ]]
+vim.cmd [[ highlight Normal guibg=none ]]
+vim.cmd [[ highlight LineNr guifg=#5eacd3 ]]
+vim.cmd [[ highlight netrwDir guifg=#5eacd3 ]]
+vim.cmd [[ highlight qfFileName guifg=#aed75f ]]
+vim.cmd [[ hi TelescopeBorder guifg=#5eacd ]]
+
+--[[ This is weird and I don't think I like how aggressive this scheme is
+g.gruvbox_baby_transparent_mode = 0
+g.gruvbox_baby_telescope_theme = 1
+g.gruvbox_baby_background_color = "hard"
+vim.cmd("colorscheme gruvbox-baby") ]]
+
+-- Another color scheme attempt (this one is supposed to have better treesitter support)
+-- vim.g.gruvbox_material_background = "soft" -- soft, medium, hard
+-- vim.g.gruvbox_material_foreground = "original" -- material, mix, original
+-- vim.g.gruvbox_material_better_performance = 1
+-- vim.g.gruvbox_material_enable_bold = 1
+-- vim.cmd("colorscheme gruvbox-material")
+
+-- Status line stuff
+opt.laststatus = 3
+require("lualine").setup({ options = { theme = "gruvbox" } })
 
 -- Highlight on yank
 vim.cmd([[
