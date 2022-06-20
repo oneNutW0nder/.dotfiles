@@ -8,9 +8,24 @@ require('telescope').setup {
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<C-h>"] = "which_key",
-        ["<ESC>"] = require('telescope.actions').close,
+        ["<ESC>"] = require("telescope.actions").close,
+        ["<C-w>"] = require("telescope.actions.layout").toggle_preview,
       }
     },
+    borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+    border = true,
+    sorting_strategy = "ascending",
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width = 0.55,
+        results_width = 0.45,
+      },
+      width = 0.87,
+      height = 0.80,
+      preview_cutoff = 120,
+    },
+
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -26,7 +41,7 @@ require('telescope').setup {
     },
     git_files = {
       theme = "dropdown",
-      layout_config = { width = 0.50 },
+      layout_config = { width = 0.50, },
     },
     buffers = {
       theme = "ivy",
@@ -46,7 +61,7 @@ require('telescope').setup {
     },
     diagnostics = {
       theme = "ivy",
-      layout_config = { height = 0.25 },
+      layout_config = { height = 0.25, --[[ preview = false ]] },
     },
     lsp_references = {
       theme = "ivy",
