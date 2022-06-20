@@ -1,12 +1,12 @@
 #include dracula.conf
 #include nord.conf
-include themes/gruvbox.conf
+# include themes/gruvbox.conf
 
 # font_family JetBrains Mono Regular Nerd Font Complete Mono
 # bold_font JetBrains Mono Bold Nerd Font Complete Mono
 # italic_font JetBrains Mono Italic Nerd Font Copmlete Mono
 # bold_italic_font JetBrains Mono Bold Italic Nerd Font Complete Mono
-font_family         Fira Code
+font_family         Cascadia Code PL
 bold_font           auto
 italic_font         auto
 bold_italic_font    auto
@@ -48,3 +48,9 @@ map ctrl+shift+h    show_scrollback
 map kitty_mod+r		load_config_file
 
 enabled_layouts horizontal
+
+
+# BEGIN_KITTY_THEME
+# Gruvbox Material Dark Soft
+# include current-theme.conf
+# END_KITTY_THEME
