@@ -15,6 +15,9 @@ require("nvim-treesitter.configs").setup {
     enable = true,
     enable_autocmd = false,
   },
+  autotag = {
+    enable = true,
+  },
   playground = {
     enable = true,
     disable = {},
