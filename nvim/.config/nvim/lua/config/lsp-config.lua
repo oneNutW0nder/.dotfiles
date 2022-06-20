@@ -27,7 +27,10 @@ end
 local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 cmp.setup {
-  window = {},
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
   mapping = {
     -- TODO: Make better keybinds for completion and snippet traversal... Overloading tab this much is toxic
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -122,7 +125,7 @@ local custom_on_attach = function(client)
   vim.keymap.set("n", "<leader>ff", vim.lsp.buf.formatting, opts)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>da", telescope.diagnostics, opts)
+  vim.api.nvim_set_keymap("n", "<leader>da", "<cmd>Telescope diagnostics bufnr=0<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, opts)
 
@@ -154,6 +157,21 @@ local custom_on_attach = function(client)
 
 end
 
+-- Borders for hover/signature_help
+-- TODO: Figure out if borders are good vs changing the LSP background
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+  -- Use a sharp border with `FloatBorder` highlights
+  border = "single"
+}
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+  -- Use a sharp border with `FloatBorder` highlights
+  border = "single"
+}
+)
 
 -- Auto pairs
 local cmp_autopairs = require "nvim-autopairs.completion.cmp"
