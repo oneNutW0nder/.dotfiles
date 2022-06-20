@@ -79,12 +79,12 @@ return packer.startup(function(use)
     --   vim.g.gruvbox_italicize_strings = 0
     --   vim.cmd("colorscheme gruvbox")
     -- end,
-    disable = false,
+    disable = true,
   }
   use {
     'luisiacc/gruvbox-baby',
     branch = 'main',
-    disable = true
+    disable = true,
   }
   use {
     "sainnhe/gruvbox-material",
@@ -94,14 +94,71 @@ return packer.startup(function(use)
       -- vim.g.gruvbox_material_better_performance = 1
       -- vim.g.gruvbox_material_enable_bold = 1
       -- vim.cmd "colorscheme gruvbox-material"
+      vim.g.gruvbox_material_palette          = "material"
+      vim.g.gruvbox_material_statusline_style = "material"
+
+      vim.g.gruvbox_material_enable_bold   = 1
+      vim.g.gruvbox_material_enable_italic = 1
+
+      vim.g.gruvbox_material_diagnostic_text_highlight = 1
+      vim.g.gruvbox_material_diagnostic_line_highlight = 1
+      vim.g.gruvbox_material_diagnostic_virtual_text   = 'colored'
+
+      vim.g.gruvbox_material_better_performance     = 1
+      vim.g.gruvbox_material_transparent_background = 1
+
+      vim.cmd([[colorscheme gruvbox-material]])
+
+      local function highlight_line_number()
+        vim.opt.cursorline = true
+        vim.cmd([[ highlight clear CursorLine ]])
+      end
+
+      highlight_line_number()
+
+      vim.cmd([[ highlight FloatBorder guibg=NONE ]])
+      vim.cmd([[ highlight NormalFloat guibg=NONE ]])
+
+      vim.cmd([[highlight CmpCurrentLine guibg=#a9b665 guifg=#282828]])
+
+      vim.cmd([[highlight! link CmpNormal normal]])
+      vim.cmd([[highlight CmpBorder guifg=#5a524c]])
+
+      vim.cmd([[highlight CmpDocNormal guibg=#242322]])
+      vim.cmd([[highlight link CmpDocBorder CmpBorder]])
+
+      vim.cmd([[highlight! link FloatBorder CmpBorder]])
+
+      vim.cmd([[highlight VertSplit guifg=#32302f]])
+
+      vim.cmd([[highlight NvimTreeNormal guibg=#242322]])
+      vim.cmd([[highlight NvimTreeWinSeparator guibg=#242322 guifg=#242322]])
+      vim.cmd([[highlight NvimTreeCursorLine guibg=#2a2a2a]])
+      vim.cmd([[highlight! link NvimTreeFolderIcon green]])
+      vim.cmd([[highlight! link NvimTreeFolderName green]])
+
+      vim.cmd([[highlight TelescopeNormal guibg=#242322]])
+      -- vim.cmd([[highlight TelescopeBorder guifg=#242322 guibg=#242322]])
+
+      -- vim.cmd([[highlight TelescopePromptNormal guibg=#32302f]])
+      -- vim.cmd([[highlight elescopePromptBorder guifg=#32302f guibg=#32302f]])
+      vim.cmd([[highlight TelescopePromptTitle  guibg=#ea6962 guifg=#242322]])
+      vim.cmd([[highlight TelescopePromptPrefix guifg=#ea6962]])
+
+      vim.cmd([[highlight TelescopePreviewTitle guibg=#a9b665 guifg=#242322]])
+
+      vim.cmd([[highlight TelescopeSelection guibg=#32302f guifg=#E3CCA3]])
+
+      vim.cmd([[hi link FloatTitle blue]])
     end,
-    disable = true,
+    disable = false,
   }
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', disable = false }
   use { 'JoosepAlviste/nvim-ts-context-commentstring' }
   use { 'nvim-treesitter/playground' }
+  use { 'windwp/nvim-ts-autotag' }
 
 
   -- Telescope
@@ -126,6 +183,28 @@ return packer.startup(function(use)
         },
       }
     end
+  }
+
+  -- Toggle Term
+  use {
+    "akinsho/toggleterm.nvim", tag = 'v1.*',
+    config = function()
+      require("toggleterm").setup {
+        open_mapping = [[<c-\>]],
+        direction = "float",
+        float_opts = {
+          border = "double",
+        },
+      }
+      -- TODO: Make this not terrible
+      local Terminal = require("toggleterm.terminal").Terminal
+      local lazygit = Terminal:new({ cmd = "lazygit" })
+
+      function _lazygit_toggle()
+        lazygit:toggle(50, "float")
+      end
+      vim.api.nvim_set_keymap("n", "<leader>lg", ":lua _lazygit_toggle()<cr>", { noremap = true, silent = true })
+    end,
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
