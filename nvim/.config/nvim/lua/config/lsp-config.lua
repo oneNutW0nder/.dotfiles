@@ -134,26 +134,26 @@ local custom_on_attach = function(client)
 
   -- Set autocommands conditional on server_capabilities
   -- TODO: These are broken AF
-  if client.server_capabilities.document_formatting then
-    vim.cmd([[
-			augroup formatting
-				autocmd! * <buffer>
-				autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-				autocmd BufWritePre <buffer> lua OrganizeImports(1000)
-			augroup END
-		]] )
-  end
-
-  -- TODO: These are broken AF
-  if client.server_capabilities.document_highlight then
-    vim.cmd([[
-			augroup lsp_document_highlight
-				autocmd! * <buffer>
-				autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-				autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-			augroup END
-		]] )
-  end
+  -- if client.server_capabilities.document_formatting then
+  --   vim.cmd([[
+		-- 	augroup formatting
+		-- 		autocmd! * <buffer>
+		-- 		autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+		-- 		autocmd BufWritePre <buffer> lua OrganizeImports(1000)
+		-- 	augroup END
+		-- ]] )
+  -- end
+  --
+  -- -- TODO: These are broken AF
+  -- if client.server_capabilities.document_highlight then
+  --   vim.cmd([[
+		-- 	augroup lsp_document_highlight
+		-- 		autocmd! * <buffer>
+		-- 		autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+		-- 		autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+		-- 	augroup END
+		-- ]] )
+  -- end
 
 end
 
@@ -196,17 +196,10 @@ lspconfig.gopls.setup {
 --
 -- Python
 --
-lspconfig.pyright.setup {
+lspconfig.pylsp.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
-  settings = {
-    python = {
-      pythonPath = "python3",
-      analysis = {
-        diagnosticMode = "openFilesOnly"
-      }
-    }
-  },
+  settings = {},
   flags = {},
 }
 
@@ -226,7 +219,18 @@ lspconfig.rust_analyzer.setup {
 lspconfig.clangd.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
-  settings = {},
+  settings = {
+    cmd = { "/Users/onenutw0nder/.local/share/llvm/bin/clangd",
+    "--resource-dir='$HOME/.local/share/llvm/include/'",
+      "--background-index",
+      "--clang-tidy",
+      "--completion-style=detailed",
+      "--fallback-style='llvm'",
+      "--header-insertion=iwyu",
+      "--header-insertion-decorators",
+      "--suggest-missing-includes",
+    },
+  },
   flags = {},
 }
 
