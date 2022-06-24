@@ -6,11 +6,14 @@ local opt = vim.opt
 local g = vim.g
 
 -- Disable matching paren highlighting
+-- TODO: Figure out matching highlight when hovering on match for a bit (same for symbols)
 g.loaded_matchparen = 1
 
 -- General settings
-opt.wildignore = "__pycache__"
-opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*", "build", ".git" }
+opt.wildoptions = "pum"
+opt.wildignore = "**/__pycache__/*"
+opt.wildignore = opt.wildignore + { "**/*.o", "*~", "*.pyc", "**/build/*", "**/.git/*", "**/node_modules/*" }
+opt.wildmode = "longest:list:full"
 opt.termguicolors = true
 -- opt.syntax = "on"
 opt.background = "dark"
@@ -21,7 +24,7 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.scrolloff = 12
 opt.sidescrolloff = 12
-opt.colorcolumn = "88"
+opt.colorcolumn = "80"
 opt.signcolumn = "yes"
 opt.number = true
 -- opt.relativenumber = true
@@ -36,14 +39,16 @@ opt.smartcase = true -- ... unless there is a capital letter in the query
 opt.splitright = true -- Prefer windows splitting to the right
 opt.splitbelow = true -- Prefer windows splitting to the bottom
 opt.breakindent = true
-opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
-opt.linebreak = true
 
 opt.belloff = "all" -- Just turn the dang bell off
 
 opt.hidden = true
-opt.wrap = false
 opt.title = true
+
+-- These options should be set by filetype
+-- opt.wrap = true
+-- opt.showbreak = string.rep(">>>", 3) -- Make it so that long lines wrap smartly
+-- opt.linebreak = true
 
 -- opt.updatetime = 50 -- Setting used by 'ThePrimeagen'
 --opt.redrawtime = 10000
@@ -66,6 +71,19 @@ end
 set_cursorline("WinLeave", false)
 set_cursorline("WinEnter", true)
 set_cursorline("FileType", false, "TelescopePrompt")
+
+-- Status line stuff
+opt.laststatus = 3
+require("lualine").setup({ options = { theme = "gruvbox-material" } })
+
+-- Highlight on yank
+-- TODO: this is broken
+vim.cmd([[
+  augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
+  augroup END
+]])
 
 -- color scheme - vim.cmd settings are from 'ThePrimeagen'
 -- g.gruvbox_contrast_dark = "hard"
@@ -97,17 +115,6 @@ vim.cmd("colorscheme gruvbox-baby") ]]
 -- vim.g.gruvbox_material_enable_bold = 1
 -- vim.cmd("colorscheme gruvbox-material")
 
--- Status line stuff
-opt.laststatus = 3
-require("lualine").setup({ options = { theme = "gruvbox-material" } })
-
--- Highlight on yank
-vim.cmd([[
-  augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
-  augroup END
-]])
 --[[ local yankGrp = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   command = "silent! lua vim.highlight.on_yank({timeout = 40})",
