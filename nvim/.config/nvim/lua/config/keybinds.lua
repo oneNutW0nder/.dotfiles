@@ -25,7 +25,7 @@ mapper( "v", "<", "<gv", opts )
 mapper( "v", ">", ">gv", opts )
 
 -- Make 'Y' behave like other capitol letters
-mapper( "", "Y", "y$", opts )
+mapper( "", "Y", "yg$", opts )
 
 -- Allow gf to open non-existent files
 mapper( "", "gf", ":edit <cfile><cr>", opts )
