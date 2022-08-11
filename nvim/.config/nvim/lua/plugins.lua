@@ -17,12 +17,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd [[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost plugins.lua source <afile> | PackerSync
---   augroup end
--- ]]
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -61,8 +61,12 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-cmdline"
   use "hrsh7th/cmp-nvim-lua"
+  use "hrsh7th/cmp-nvim-lsp-signature-help"
   use "saadparwaiz1/cmp_luasnip"
+  use "f3fora/cmp-spell"
+  use "tamago324/cmp-zsh"
   use "onsails/lspkind.nvim"
 
   -- snippets
@@ -152,6 +156,13 @@ return packer.startup(function(use)
       vim.cmd([[hi link FloatTitle blue]])
     end,
     disable = false,
+  }
+
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end
   }
 
   -- Treesitter
