@@ -60,21 +60,29 @@ cmp.setup {
     end, { "i", "s" }),
   },
   sources = {
-    { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
     { name = 'luasnip' },
     { name = 'path' },
-    { name = 'buffer', keyword_length = 5 },
+  },
+  {
+    { name = 'nvim_lsp_signature_help' },
+  },
+  {
+    { name = 'spell', keyword_length = 4 },
+    { name = 'buffer', keyword_length = 6 },
   },
   formatting = {
     format = lspkind.cmp_format {
       with_text = true,
       menu = {
         nvim_lsp = "[lsp]",
-        nvim_lua = "[api]",
+        nvim_lua = "[lua_api]",
         luasnip = "[snip]",
         path = "[path]",
+        spell = "[spell]",
         buffer = "[buffer]",
+        cmdline = "[cmd]",
       },
     },
   },
@@ -88,6 +96,20 @@ cmp.setup {
     ghost_text = false,
   },
 }
+
+-- Completion for command line
+cmp.setup.cmdline("/", {
+  sources = cmp.config.sources({
+    { name = "buffer" },
+  })
+})
+
+cmp.setup.cmdline(":", {
+  sources = cmp.config.sources({
+    { name = "path" },
+    { name = "cmdline" },
+  })
+})
 
 
 -- Use an on_attach function to only map the following keys
@@ -103,9 +125,6 @@ lsp_installer.settings({
   }
 })
 
--- TODO --> Make these work
--- nmap{"C-f", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>"}
--- nmap{"<leader>lg", "<cmd>Telescope live_grep<CR>"}
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local custom_on_attach = function(client)
@@ -122,7 +141,7 @@ local custom_on_attach = function(client)
   vim.keymap.set("n", "gr", telescope.lsp_references, opts)
   vim.keymap.set("n", "gt", telescope.lsp_type_definitions, opts)
   vim.keymap.set("n", "<leader>o", telescope.treesitter, opts)
-  vim.keymap.set("n", "<leader>ff", vim.lsp.buf.formatting, opts)
+  vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, opts)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
   vim.api.nvim_set_keymap("n", "<leader>da", "<cmd>Telescope diagnostics bufnr=0<cr>", { noremap = true, silent = true })
@@ -131,28 +150,46 @@ local custom_on_attach = function(client)
 
   -- vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
   -- vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer = 0})
+  -- if client.resolved_capabilities.document_highlight then
+  --   vim.cmd [[
+  --     hi! LspReferenceRead cterm=bold ctermbg=235 guibg=LightYellow
+  --     hi! LspReferenceText cterm=bold ctermbg=235 guibg=LightYellow
+  --     hi! LspReferenceWrite cterm=bold ctermbg=235 guibg=LightYellow
+  --   ]]
+  --   vim.api.nvim_create_augroup('lsp_document_highlight', {})
+  --   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+  --     group = 'lsp_document_highlight',
+  --     buffer = 0,
+  --     callback = vim.lsp.buf.document_highlight,
+  --   })
+  --   vim.api.nvim_create_autocmd('CursorMoved', {
+  --     group = 'lsp_document_highlight',
+  --     buffer = 0,
+  --     callback = vim.lsp.buf.clear_references,
+  --   })
+  -- end
 
   -- Set autocommands conditional on server_capabilities
   -- TODO: These are broken AF
   -- if client.server_capabilities.document_formatting then
   --   vim.cmd([[
-		-- 	augroup formatting
-		-- 		autocmd! * <buffer>
-		-- 		autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-		-- 		autocmd BufWritePre <buffer> lua OrganizeImports(1000)
-		-- 	augroup END
-		-- ]] )
+  -- 	augroup formatting
+  -- 		autocmd! * <buffer>
+  -- 		autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+  -- 		autocmd BufWritePre <buffer> lua OrganizeImports(1000)
+  -- 	augroup END
+  -- ]] )
   -- end
   --
   -- -- TODO: These are broken AF
   -- if client.server_capabilities.document_highlight then
   --   vim.cmd([[
-		-- 	augroup lsp_document_highlight
-		-- 		autocmd! * <buffer>
-		-- 		autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-		-- 		autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-		-- 	augroup END
-		-- ]] )
+  -- 	augroup lsp_document_highlight
+  -- 		autocmd! * <buffer>
+  -- 		autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+  -- 		autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+  -- 	augroup END
+  -- ]] )
   -- end
 
 end
@@ -221,11 +258,10 @@ lspconfig.clangd.setup {
   on_attach = custom_on_attach,
   settings = {
     cmd = { "/Users/onenutw0nder/.local/share/llvm/bin/clangd",
-    "--resource-dir='$HOME/.local/share/llvm/include/'",
       "--background-index",
       "--clang-tidy",
       "--completion-style=detailed",
-      "--fallback-style='llvm'",
+      "--fallback-style=llvm",
       "--header-insertion=iwyu",
       "--header-insertion-decorators",
       "--suggest-missing-includes",
@@ -293,6 +329,16 @@ lspconfig.taplo.setup {
   settings = {
     cmd = "/Users/onenutw0nder/.cargo/bin/taplo lsp stdio",
   },
+  flags = {},
+}
+
+--
+-- Vim
+--
+lspconfig.cmake.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  settings = {},
   flags = {},
 }
 
