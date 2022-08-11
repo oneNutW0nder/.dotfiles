@@ -13,7 +13,7 @@ g.loaded_matchparen = 1
 opt.wildoptions = "pum"
 opt.wildignore = "**/__pycache__/*"
 opt.wildignore = opt.wildignore + { "**/*.o", "*~", "*.pyc", "**/build/*", "**/.git/*", "**/node_modules/*" }
-opt.wildmode = "longest:list:full"
+-- opt.wildmode = "longest:list:full"
 opt.termguicolors = true
 -- opt.syntax = "on"
 opt.background = "dark"
@@ -30,7 +30,6 @@ opt.number = true
 -- opt.relativenumber = true
 
 opt.confirm = true
-opt.spell = true
 opt.backup = false
 opt.writebackup = false
 opt.mouse = "a"
@@ -49,6 +48,7 @@ opt.title = true
 -- opt.wrap = true
 -- opt.showbreak = string.rep(">>>", 3) -- Make it so that long lines wrap smartly
 -- opt.linebreak = true
+-- opt.spell = true
 
 -- opt.updatetime = 50 -- Setting used by 'ThePrimeagen'
 --opt.redrawtime = 10000
@@ -95,7 +95,7 @@ vim.cmd([[
 
 -- vim.cmd [[ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" ]]
 -- vim.cmd [[ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" ]]
--- vim.cmd [[ hi CursorLineNR guibg=None ]]
+vim.cmd [[ hi CursorLineNR guibg=None ]]
 -- vim.cmd [[ highlight Normal guibg=none ]]
 -- vim.cmd [[ highlight LineNr guifg=#5eacd3 ]]
 -- vim.cmd [[ highlight netrwDir guifg=#5eacd3 ]]
