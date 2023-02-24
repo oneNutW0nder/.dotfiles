@@ -257,7 +257,7 @@ lspconfig.clangd.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
   settings = {
-    cmd = { "/Users/onenutw0nder/.local/share/llvm/bin/clangd",
+    cmd = { "/usr/bin/clangd",
       "--background-index",
       "--clang-tidy",
       "--completion-style=detailed",
